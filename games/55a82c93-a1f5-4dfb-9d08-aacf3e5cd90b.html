@@ -24,14 +24,17 @@ html {
   margin: 0;                                          /* no margins */
   background-color: black;                            /* black background */
   vertical-align: middle;                             /* align vertical middle */
-  heigth: 48px;
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
 }
 
 .title {
 	width: 100%;                                      /* title container width 100% */
 	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
     grid-row: 1;                                      /* row 1 */
-	heigth: 48px;
+
 }
 .cards {                                              /* empty not used here */
 }
@@ -82,6 +85,10 @@ html {
 .detailstable {
   width: 100%;                                         /* set to full width of details */
   padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
 }
 
 .descriptiontitle {
@@ -172,11 +179,11 @@ a:active {
 
 		</style>
 	</head>
-	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('55a82c93-a1f5-4dfb-9d08-aacf3e5cd90b/04c2de0c-c0b5-4e6f-b541-6cdd63ee123c.jpg');">
 		<div class="cards">
 			<div class="card">
 				<div class="title">
-					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Spooky&#39;s Jump Scare Mansion</h2>
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img alt="icon" Height="48" class="lozad" data-src="55a82c93-a1f5-4dfb-9d08-aacf3e5cd90b/d75a1a9e-ed52-4a09-9cfe-03f8b5a093cd.ico"/> Spooky&#39;s Jump Scare Mansion</h2>
 				</div>
 				<div class="detailstitle">
 				<H3>Details</H3>
@@ -185,7 +192,11 @@ a:active {
 					<div style="overflow: auto;">
 						<TABLE class="detailstable">
 							<col style="width:50%" />
-							<col style="width:50%" />							<TR>
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img alt="cover" Height="175" class="lozad" data-src="55a82c93-a1f5-4dfb-9d08-aacf3e5cd90b/2fbda327-ce1f-400a-b712-3a784325f701.jpg"/></TD>
+							</TR>
+							<TR>
 								<TD>Playtime</TD>
 								<TD>15m 0s</TD>
 							</TR>
@@ -261,5 +272,10 @@ a:active {
 				<div class="footer"> </div>
 			</div>
 		</div>
-	</body>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
 </html>

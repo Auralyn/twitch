@@ -1,0 +1,265 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Warface</title>
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  heigth: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	heigth: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.footer {
+	grid-column:1;                                     /* 1st column of grid */
+	grid-row:3;                                        /* 3rd row of grid */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #B1B1B1;                                      /* unvisited link color */
+}
+a:visited {
+  color: #B1B1B1;                                      /* visited link color */
+}
+a:hover {
+  color: #D1D1D1;                                      /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #B1B1B1;                                      /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Warface</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>3h 30m 0s</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-8/14/2019">8/14/2019</a> 22:38:20</TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-8/6/2021">8/6/2021</a> 23:33:21</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Played">Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text_platform_ascending_name_ascending.html#quicklink-PC">PC</a></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-7/1/2014">7/1/2014</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-68">68</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-62">62</a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Action">Action</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Adventure">Adventure</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Free to Play">Free to Play</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Massively Multiplayer">Massively Multiplayer</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-RPG">RPG</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Simulation">Simulation</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Strategy">Strategy</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-MY.GAMES">MY.GAMES</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_publisher_ascending_name_ascending.html#quicklink-MY.GAMES">MY.GAMES</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Achievements">Achievements</a><br/><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Co-Op">Co-Op</a><br/><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-In-App Purchases">In-App Purchases</a><br/><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-MMO">MMO</a><br/><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Multi-Player">Multi-Player</a><br/><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Online Co-Op">Online Co-Op</a><br/><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Online Pvp">Online Pvp</a><br/><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Pvp">Pvp</a><br/><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Trading Cards">Trading Cards</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://steamcommunity.com/app/291480" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/291480/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/291480/guides/" target="_blank">Guides</a><br/><a href="https://store.steampowered.com/news/?appids=291480" target="_blank">News</a><br/><a href="https://store.steampowered.com/app/291480" target="_blank">Store Page</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=291480" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/stats/291480/achievements" target="_blank">Achievements</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<h1>Just Updated</h1><p><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/291480/extras/600x230_1.jpg?t=1628196805" /><br><br>The first part of the seasonal update has been installed on the main servers. We have prepared for you a new contract system, the &quot;Ruins&quot; map for the &quot;Capture&quot; mode, a ton of weaponry novelties, thematic sets, equipment and skins, a Battle Pass and much more. Meet the &quot;Hidden War&quot; with guns blazing, get together friends and explore the new content!<br><br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/291480/extras/600x230_2_eng.jpg?t=1628196805" /><br><br>There is a new contract system, which is completely different from the previously existing mechanics. The updated contracts work very simply:<br><br><ul class="bb_ul"><li>in the main menu and the lobby, the player goes to the &quot;Contracts&quot; section (available on the top panel);<br></li><li>a special menu allows you to see all the available contracts and information about them (execution conditions, activation costs, progress status and reward upon completion);<br></li><li>some contracts can have a certain fee (for example, WF$), but the reward for their completion is higher;<br></li><li>there are two types of contracts: a one-time set of tasks or a sequential chain of them;<br></li><li>a player may have an unlimited number of active contracts at the same time.<br></li><li>some contracts have time constraints; offers like those may disappear at any time.</li></ul><br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/291480/extras/600x230_3_eng.jpg?t=1628196805" /><br><br>The new map for the &quot;Capture&quot; mode will greet you with a tropical climate and the possibility to use a variety of strategies. The confrontation between Blackwood and Warface will unfold in hot Africa among the rubble of the ancient ruins, which have prepared some treacherous surprises for those who dare explore them.<br><br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/291480/extras/600x230_4_eng.jpg?t=1628196805" /><br><br>The appearance of the new series will satisfy even the most discerning gun connoisseurs. They have a stylish design, great variability of patterns, as well their key feature, unique eye-catching elements inherent in every model that will certainly not leave you indifferent. Some guns have exclusive external elements that enhance the usual models and give them a fresh coat of paint. Check out how cool they are!<br><br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/291480/extras/600x230_5_eng.jpg?t=1628196805" /><br><br>The frames of the models from the new series are decorated with a gold pattern using geometric motifs. It resembles a scratch card for travelers that you need to scratch out if you’ve visited certain places in the world. You also have a difficult journey ahead 一 so grab the new guns to learn about the new game content with them!<br><br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/291480/extras/600x230_6_eng.jpg?t=1628196805" /><br><br>A new special set of &quot;Hidden War&quot; gear has appeared in the seasonal update. The pack includes a helmet and a vest for all classes (except for SEDs). The specs of the new set are the same for each class. The &quot;Hidden War&quot; gear will allow you to diversify equipment to fit different needs of your fighter, combining new elements with the already existing ones.<br><br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/291480/extras/600x230_7_eng.jpg?t=1628196805" /><br><br>Have you been waiting to give your opponent a proper beating, but doing that with a toy hammer was a bit too difficult? No problem! Now we have some serious novelty 一 the bat. You don’t have to shy away from the appearance of the weapon. Just equip the bat and demonstrate the most serious intentions in a fight! The weapon is available in several variants, which differ from each other substantially. In addition, we have prepared some camouflages for the new arm.<br><br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/291480/extras/600x230_8_eng.jpg?t=1628196805" /><br><br>Just one look at this novelty, will probably remind you of a couple of popular films about the not so friendly guests from other planets and dimensions. The frame of the models from the new series is styled in dark colours using contrasting green inserts. They shine beautifully, as if filling the weapon with unearthly power. Give in to the temptation — bring these guns into your next battle!<br><br><br><a href="https://steamcommunity.com/linkfilter/?url=https://pc.warface.com/en/news/1225559.html" target="_blank" rel="noopener"  >https://pc.warface.com/en/news/1225559.html</a></p><br><h1>About the Game</h1>Warface is a contemporary MMO first person shooter with millions of fans around the world. It offers intense PvP modes, compelling PvE missions and raids that you can challenge with five diverse classes and a colossal customizable arsenal.<br><br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/291480/extras/pvp.gif?t=1628196805" /><h2 class="bb_tag">Intense PvP</h2><br>Over ten multiplayer modes with dozens of maps – from time proven shooter classics to fresh experiments, as well the elaborated system of ranked matches with unique rewards await its heroes.<br><br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/291480/extras/Warface_-Special-Operation-Mars---Trailer(1).gif?t=1628196805" /><h2 class="bb_tag">Compelling PvE</h2><br>Play with your friends in exciting online missions or try yourself in full-scale raids with several difficulty levels and epic loot.<br><br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/291480/extras/1533_class_600_250.gif?t=1628196805" /><h2 class="bb_tag">Diverse classes</h2><br>Rifleman, Medic, Engineer, Sniper and SED are at your service: assault the defenses of your enemies, revive your teammates, mine the corridors, take down the foes with precise shots or tank the enemy's counter-attack - here you decide how to act!<br><br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/291480/extras/wf_guns_trailer_25sec_RUS.gif?t=1628196805" /><h2 class="bb_tag">Enormous customizable arsenal</h2><br>Hundreds of weapons are at your disposal, customizable with a range of scopes, grips, flash guards, and camo to get the best performance tailored to your preference.<br><br><strong>Jump into action and play for free!</strong>
+				</div>
+				<div class="footer"> </div>
+			</div>
+		</div>
+	</body>
+</html>
